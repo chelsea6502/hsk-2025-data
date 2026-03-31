@@ -14,27 +14,34 @@ Two HSK standards are represented:
 
 ## Data Files
 
-### Main JSON datasets (HSK 3.0, sourced from chinesetest.cn)
+### Main TSV datasets (HSK 3.0, sourced from chinesetest.cn)
 
-| File | Records | Schema |
+| File | Records | Columns |
+|------|---------|---------|
+| `vocabulary.tsv` | ~11,000 | `type`, `word`, `pinyin`, `cixing` (part of speech), `sort`, `levelName` (一级–七-九级) |
+| `grammar.tsv` | ~593 | `examLevelId` (HSK1–HSK9), `content`, `grammarType`, `categoryType`, `grammarDetail`, `cases` |
+| `hanzi.tsv` | ~4,288 | `examLevelId` (HSK1–HSK9), `word`, `type` |
+
+- `vocabulary.tsv` uses Chinese level names (一级 = Level 1, 七-九级 = Levels 7-9)
+- `grammar.tsv` and `hanzi.tsv` use English-style level IDs (HSK1, HSK2, etc.)
+- In `grammar.tsv`, multi-line `cases` examples are joined with `|`
+
+### Archive TSV files (`archive/`)
+
+Previous HSK word lists (from the MteH corpus) used for comparing against the current official data. Columns: `word`, `variant`, `level`.
+
+| File | Records | Levels |
 |------|---------|--------|
-| `vocabulary.json` | ~11,000 | `type`, `word`, `pinyin`, `cixing` (part of speech), `sort`, `levelName` (一级–七-九级) |
-| `grammar.json` | ~593 | `examLevelId` (HSK1–HSK9), `content`, `grammarType`, `categoryType`, `grammarDetail`, `cases` |
-| `hanzi.json` | ~4,288 | `examLevelId` (HSK1–HSK9), `word`, `type` |
+| `archive/hsk2.0_words.tsv` | 1,200 | 1–4 |
+| `archive/hsk3.0_words.tsv` | 2,245 | 1–3 |
 
-- `vocabulary.json` uses Chinese level names (一级 = Level 1, 七-九级 = Levels 7-9)
-- `grammar.json` and `hanzi.json` use English-style level IDs (HSK1, HSK2, etc.)
-
-### Comparison text files (`mteh-sources/`)
-
-Previous HSK word lists (from the MteH corpus) used for comparing against the current official data. Plain text, one word per line. See the `readme.md` in each subdirectory for important caveats:
-- **Variant forms**: `爸爸|爸` means word has an alternate form
+Caveats:
+- **Variant forms**: e.g. `爸爸` with variant `爸`
 - **Parenthetical usage**: `第（第二）` shows contextual usage
 - **Duplicates exist** across levels (e.g., 一下儿 appears in both HSK1 and HSK5)
 - **Grammar structures** mixed in with vocabulary in HSK 2.0 (e.g., `虽然……但是……`)
 
 ## Key Gotchas
 
-- The `mteh-sources/` directory is **untracked** — it contains previous HSK word lists from the MteH corpus, used for comparison against the current 2025 data.
 - HSK 3.0 has separate word and character lists (unlike HSK 2.0 where characters are derived from words).
-- Level numbering differs between files: Chinese numerals in `vocabulary.json` vs "HSK1" format in the other JSON files.
+- Level numbering differs between files: Chinese numerals in `vocabulary.tsv` vs "HSK1" format in the other TSV files.
