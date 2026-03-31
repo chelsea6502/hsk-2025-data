@@ -25,7 +25,7 @@ The 2025 data has changed from the original 2021 HSK 3.0 release. This repo is u
 ## Comparison Data Sources
 
 For comparing against previous HSK versions, word lists from the MteH corpus are available at:
-- https://github.com/becky82/mteh/tree/master/sources — contains HSK 2.0, HSK 3.0, and other Chinese character/word sources
+- https://github.com/becky82/mteh/tree/master/sources — contains HSK 2.0, HSK 3.0, and other Chinese character/word sources. Note: MteH calls the 2025 HSK data "HSK 3.1".
 
 ## Key Gotchas
 
